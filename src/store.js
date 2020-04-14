@@ -11,6 +11,14 @@ export default new Vuex.Store({
         },
         categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community']
     },
+    getters: {
+        catLength: state => {
+            return state.categories.length
+        },
+        messageCategory: (state, getters) => {
+            return 'Всего ' + getters.catLength + ' категорий';
+        }
+    },
     mutations: {},
     actions: {}
 })
