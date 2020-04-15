@@ -7,6 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         events: [],
+        count: 0,
+        perPage: 3,
         user: {
             id: '1',
             name: 'Mixa'
@@ -17,6 +19,12 @@ export default new Vuex.Store({
     mutations: {
         ADD_EVENT(state, event) {
             state.events.push(event)
+        },
+        SET_EVENTS(state, events) {
+            state.events = events;
+        },
+        SET_COUNT(state, count) {
+            state.count = count;
         }
     },
     actions: {
@@ -24,6 +32,18 @@ export default new Vuex.Store({
             return EventService.postEvent(event).then(() => {
                 commit('ADD_EVENT', event)
             })
-        }
+        },
+        fetchEvents({commit}, {perPage, page}) {
+            EventService.getEvents(perPage, page)
+                .then((res) => {
+                    const count = res.headers['x-total-count'];
+                    console.log(count);
+                    commit('SET_COUNT', count);
+                    commit('SET_EVENTS', res.data);
+                })
+                .catch(error => {
+                    console.log('There was an error: ', error.response)
+                })
+        },
     }
 })
