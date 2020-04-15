@@ -1,40 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import EventService from "./services/EventService";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        count: 0,
+        events: [],
         user: {
             id: '1',
             name: 'Mixa'
         },
         categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community']
     },
-    getters: {
-        catLength: state => {
-            return state.categories.length
-        },
-        messageCategory: (state, getters) => {
-            return 'Всего ' + getters.catLength + ' категорий';
-        }
-    },
+    getters: {},
     mutations: {
-        INCREMENT_COUNT(state, count) {
-            if(count) {
-                state.count += count;
-            } else {
-                state.count++;
-            }
+        ADD_EVENT(state, event) {
+            state.events.push(event)
         }
-
     },
     actions: {
-        updateCount({state, commit}, incrementBy) {
-            if(state.user) {
-                commit('INCREMENT_COUNT', incrementBy);
-            }
+        createEvent({commit}, event) {
+            return EventService.postEvent(event).then(() => {
+                commit('ADD_EVENT', event)
+            })
         }
     }
 })

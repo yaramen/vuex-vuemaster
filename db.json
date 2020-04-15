@@ -71,6 +71,62 @@
           "name": "Mary Gordon"
         }
       ]
+    },
+    {
+      "category": "sustainability",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "Test",
+      "description": "Test",
+      "location": "Test",
+      "date": "2020-04-15T03:23:00.000Z",
+      "time": "17:00",
+      "attendees": [],
+      "id": 4
+    },
+    {
+      "category": "nature",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "test",
+      "description": "teT",
+      "location": "test",
+      "date": "2020-04-07T03:25:00.000Z",
+      "time": "18:00",
+      "attendees": [],
+      "id": 5
+    },
+    {
+      "id": 6559046,
+      "category": "sustainability",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "Test2",
+      "description": "Test",
+      "location": "TEst",
+      "date": "2020-04-01T03:25:00.000Z",
+      "time": "21:00",
+      "attendees": []
+    },
+    {
+      "id": 3313171,
+      "category": "nature",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "111",
+      "description": "111",
+      "location": "111",
+      "date": "2020-04-01T03:28:00.000Z",
+      "time": "1:00",
+      "attendees": []
     }
   ]
 }
