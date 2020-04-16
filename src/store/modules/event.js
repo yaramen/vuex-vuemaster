@@ -1,20 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import EventService from "./services/EventService";
+import EventService from "../../services/EventService";
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
+    namespaced: true,
     state: {
         events: [],
         event: {},
         count: 0,
         perPage: 3,
-        user: {
-            id: '1',
-            name: 'Mixa'
-        },
-        categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community']
     },
     getters: {
         getEventById: state => id => {
@@ -36,7 +28,11 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        createEvent({commit}, event) {
+        createEvent({commit, dispatch, rootState}, event) {
+            console.log('User ' + rootState.user.name);
+            //dispatch('actionToCall');
+            //dispatch('moduleA/actionToCall', payload, {root: true});
+
             return EventService.postEvent(event).then(() => {
                 commit('ADD_EVENT', event)
             })
@@ -55,7 +51,7 @@ export default new Vuex.Store({
         fetchEvent({commit, getters}, id) {
             const event = getters.getEventById(id);
 
-            if(event) {
+            if (event) {
                 commit('SET_EVENT', event);
             } else {
                 EventService.getEvent(id)
@@ -68,5 +64,5 @@ export default new Vuex.Store({
 
             }
         }
-    }
-})
+    },
+}

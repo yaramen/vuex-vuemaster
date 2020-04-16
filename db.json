@@ -155,6 +155,34 @@
       "date": "2020-04-01T05:16:00.000Z",
       "time": "18:00",
       "attendees": []
+    },
+    {
+      "id": 8894524,
+      "category": "nature",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "Test",
+      "description": "Test",
+      "location": "Test",
+      "date": "2020-04-01T03:41:00.000Z",
+      "time": "22:00",
+      "attendees": []
+    },
+    {
+      "id": 9781840,
+      "category": "nature",
+      "organizer": {
+        "id": "1",
+        "name": "Mixa"
+      },
+      "title": "test",
+      "description": "test",
+      "location": "test",
+      "date": "2020-04-01T04:14:00.000Z",
+      "time": "20:00",
+      "attendees": []
     }
   ]
 }
