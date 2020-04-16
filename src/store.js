@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         events: [],
+        event: {},
         count: 0,
         perPage: 3,
         user: {
@@ -15,7 +16,11 @@ export default new Vuex.Store({
         },
         categories: ['sustainability', 'nature', 'animal welfare', 'housing', 'education', 'food', 'community']
     },
-    getters: {},
+    getters: {
+        getEventById: state => id => {
+            return state.events.find(event => event.id === id)
+        }
+    },
     mutations: {
         ADD_EVENT(state, event) {
             state.events.push(event)
@@ -25,6 +30,9 @@ export default new Vuex.Store({
         },
         SET_COUNT(state, count) {
             state.count = count;
+        },
+        SET_EVENT(state, event) {
+            state.event = event;
         }
     },
     actions: {
@@ -37,7 +45,6 @@ export default new Vuex.Store({
             EventService.getEvents(perPage, page)
                 .then((res) => {
                     const count = res.headers['x-total-count'];
-                    console.log(count);
                     commit('SET_COUNT', count);
                     commit('SET_EVENTS', res.data);
                 })
@@ -45,5 +52,21 @@ export default new Vuex.Store({
                     console.log('There was an error: ', error.response)
                 })
         },
+        fetchEvent({commit, getters}, id) {
+            const event = getters.getEventById(id);
+
+            if(event) {
+                commit('SET_EVENT', event);
+            } else {
+                EventService.getEvent(id)
+                    .then(res => {
+                        commit('SET_EVENT', res.data);
+                    })
+                    .catch(error => {
+                        console.log('There was an error: ', error.message);
+                    })
+
+            }
+        }
     }
 })
