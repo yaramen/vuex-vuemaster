@@ -9,7 +9,7 @@
     "server": "npx json-server --watch db.json"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "json-server": "^0.16.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
